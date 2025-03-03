@@ -2,7 +2,6 @@ package com.example.movietool.service;
 
 import com.example.movietool.models.RequestAPIModel;
 import com.example.movietool.models.Result;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +25,7 @@ public class getTitleService {
 
 
 
-    private String baseUrl = "https://api.themoviedb.org/3/discover/movie";
+    private final String baseUrl = "https://api.themoviedb.org/3/discover/movie";
 
     private ResponseEntity<RequestAPIModel> apiResponse(String requestUrl) {
         HttpHeaders headers = new HttpHeaders();
@@ -56,7 +55,6 @@ public class getTitleService {
         LocalDateTime dayBefore = now.minusDays(minusDays);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String nowFormatted = now.format(formatter);
-        String dayAfterFormatted = dayAfter.format(formatter);
         String dayBeforeFormatted = dayBefore.format(formatter);
         return new ArrayList<>(Arrays.asList(dayBeforeFormatted, dayBeforeFormatted, nowFormatted));
     }
@@ -81,8 +79,8 @@ public class getTitleService {
     }
 
     public void getUpcomingTitle() {
-        String maxDate = setDataTime(90,0).get(0);
-        String minDate = setDataTime(30, 0).get(0);
+        String maxDate = setDataTime(90,0).getFirst();
+        String minDate = setDataTime(30, 0).getFirst();
         String url = "?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=" + minDate +"&release_date.lte=" +maxDate;
         ResponseEntity<RequestAPIModel> responseEntity = apiResponse(url);
         printApiResponse(responseEntity);
