@@ -23,6 +23,9 @@ public class getTitleService {
     @Value("${spring.TMDB.apiKey}")
     private String apiKey;
 
+
+
+
     private String baseUrl = "https://api.themoviedb.org/3/discover/movie";
 
     private ResponseEntity<RequestAPIModel> apiResponse(String requestUrl) {
@@ -61,6 +64,7 @@ public class getTitleService {
         String url = "?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
         ResponseEntity<RequestAPIModel> responseEntity = apiResponse(url);
         printApiResponse(responseEntity);
+
     }
     public void getNowPlayingTitle() {
         String maxDate = setDataTime(0, 0).get(2);
