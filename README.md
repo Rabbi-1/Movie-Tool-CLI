@@ -20,7 +20,7 @@ tmdb-app --type "upcoming"  # Upcoming Movies
 
 ## 📜 Example Output
 ```sh
-$ tmdb-app --type "popular"
+$ "popular"
 Fetching popular movies...
 
 1. Oppenheimer (2023)

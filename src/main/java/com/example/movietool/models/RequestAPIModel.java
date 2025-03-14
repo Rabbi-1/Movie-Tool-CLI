@@ -11,6 +11,6 @@ import java.util.List;
 @Setter
 @Data
 public class RequestAPIModel {
-    @JsonProperty("result")
+    @JsonProperty("results")
     private List<Result> AllResults;
 }
